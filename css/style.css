@@ -112,8 +112,8 @@ html, body
     animation: fadein 1s;
 }
 /* Quick fix for font-size on small screens to avoid text overflow */
-@media only screen and (max-width: 768px) { #gameOver { font-size: 2rem; } }
-@media only screen and (max-height: 600px) { #gameOver { font-size: 2rem; } }
+@media only screen and (max-width: 768px) { #gameOver { font-size: 1.5rem; } }
+@media only screen and (max-height: 600px) { #gameOver { font-size: 1.5rem; } }
 
 
 /* Utilities */
