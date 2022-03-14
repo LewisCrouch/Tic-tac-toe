@@ -1,0 +1,130 @@
+*, ::after, ::before
+{
+    box-sizing: border-box;
+}
+
+/* Declare some variables for colors to avoid changing in multiple places */
+:root
+{
+    --bg-color: #0e8dbc;
+    --fg-color: #fff;
+}
+
+/* Media queries to ensure responsive UI. Using a variable for board size to avoid a mess */
+@media only screen and (max-width: 600px) { :root { --board-size: 300px; --square-size: 100px; --gutter: 4px; } }
+@media only screen and (min-width: 600px) { :root { --board-size: 375px; --square-size: 125px; --gutter: 5px; } }
+@media only screen and (min-width: 768px) { :root { --board-size: 450px; --square-size: 150px; --gutter: 5px; } }
+@media only screen and (min-width: 992px) { :root { --board-size: 525px; --square-size: 175px;  --gutter: 6px; } }
+@media only screen and (min-width: 1200px) { :root { --board-size: 600px; --square-size: 200px; --gutter: 6px; } }
+
+@media only screen and (max-height: 600px) { :root { --board-size: 300px; --square-size: 100px; --gutter: 4px; } }
+
+html, body
+{
+    margin: 0rem;
+
+    background-color: var(--bg-color);
+    font-size: 16pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--fg-color);
+}
+
+#container
+{
+    position: fixed;
+    width: var(--board-size);
+    height: calc(var(--board-size) + 4rem); /* Increase container size to accomodate Score */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#board
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: var(--board-size);
+    height: var(--board-size);
+}
+
+.square
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    user-select: none;
+    cursor: pointer;
+}
+
+.cross, .naught
+{
+    width: 100%;
+    height: 100%;
+
+    cursor: default;
+    background-size: contain;
+    animation: fadein 1s;
+}
+
+.cross { background-image: url("../img/cross.svg"); }
+.naught { background-image: url("../img/naught.svg"); }
+
+#score
+{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 1.5rem;
+    width: 100%;
+}
+/* Quick fix for font-size on small screens to avoid text overflow */
+@media only screen and (max-width: 768px) { #score { font-size: 0.65rem; } }
+@media only screen and (max-height: 600px) { #score { font-size: 0.65rem; } }
+
+#score div
+{
+    text-align: center;
+    font-weight: bold;
+}
+
+#score .active
+{
+    text-shadow: 0 0 10px #FFFFFF;
+    transition: text-shadow 250ms linear;
+}
+
+#gameOver
+{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    user-select: none;
+    cursor: pointer;
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: var(--bg-color);
+    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    animation: fadein 1s;
+}
+
+
+/* Utilities */
+
+.border-all { border: var(--gutter) solid var(--fg-color); }
+.border-top, .border-y { border-top: var(--gutter) solid var(--fg-color); }
+.border-right, .border-x { border-right: var(--gutter) solid var(--fg-color); }
+.border-bottom, .border-y { border-bottom: var(--gutter) solid var(--fg-color); }
+.border-left, .border-x { border-left: var(--gutter) solid var(--fg-color); }
+
+.hidden { display: none !important; }
+
+@keyframes fadein
+{
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

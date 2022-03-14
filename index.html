@@ -5,9 +5,39 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tic-tac-toe</title>
+
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
-        
+        <div id="container">
+            <div id="board">
+                <!-- Top Row -->
+                <div data-index="0" class="square"></div>
+                <div data-index="1" class="square border-x"></div>
+                <div data-index="2" class="square"></div>
+
+                <!-- Middle Row -->
+                <div data-index="3" class="square border-y"></div>
+                <div data-index="4" class="square border-all"></div>
+                <div data-index="5" class="square border-y"></div>
+
+                <!-- Bottom Row -->
+                <div data-index="6" class="square"></div>
+                <div data-index="7" class="square border-x"></div>
+                <div data-index="8" class="square"></div>
+            </div>
+
+            <div id="score">
+                <div>PLAYER 1 (X)<div id="scorePlayer1">0</div></div>
+                <div>TIES<div id="scoreTie">0</div></div>
+                <div>PLAYER 2 (O)<div id="scorePlayer2">0</div></div>
+            </div>
+        </div>
+
+        <div id="gameOver" class="hidden"></div>
+
+        <script src="js/util.js"></script>
+        <script src="js/tictactoe.js"></script>
     </body>
 </html>
