@@ -138,7 +138,7 @@ function validateBoard()
     }
 
     // Check if the board has any available squares
-    if(!boardStates.includes(""))
+    if(!gameOver && !boardStates.includes(""))
     {
         // If not, it's a tie. Show the game over screen accordingly
         scoreTie++;
